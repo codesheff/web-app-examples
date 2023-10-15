@@ -1,19 +1,14 @@
 import React from 'react';
-
-import Container from 'react-bootstrap/Container';
-//import Nav from 'react-bootstrap/Nav';
-import { Navbar } from 'react-bootstrap';//import in curly brackets to make jsx work?
+import { Navbar, Container } from 'react-bootstrap';
 
 const navbarStyle = {
     backgroundColor: 'lightblue'
 };
 
-const Header = ({title}) => {
-
-    
+const Header = ({ title }) => {
     // this returns jsx ( JavaScript XML )
     // in jsx you can put java script code inside curly brackets {}
-    return(
+    return (
         <Navbar style={navbarStyle} variant="light">
             <Container>
                 <Navbar.Brand href="/">{title}</Navbar.Brand>
@@ -23,4 +18,3 @@ const Header = ({title}) => {
 };
 
 export default Header;
-
