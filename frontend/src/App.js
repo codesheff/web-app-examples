@@ -28,6 +28,7 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       })
+      setWord('');
   }
 
   // When running in development mode, we can access process.env
