@@ -1,3 +1,11 @@
 
 # Here's how to look up react bootstrap components
 https://react-bootstrap.github.io/docs/components/accordion
+
+
+# Make SVG image from text.
+https://maketext.io/
+
+
+## Create 
+https://favicon.io/
