@@ -6,6 +6,8 @@ from flask import Flask, request
 ## nb , request from flask module allows us to handle requests from clients
 ##      requests module allows us to create requests to another server
 from dotenv import load_dotenv
+from flask_cors import CORS
+
 
 this_dir=os.path.dirname(os.path.abspath(__file__))
 dotenv_path=os.path.join(this_dir,".env.local")
@@ -20,6 +22,7 @@ if not UNSPLASH_KEY:
 
 
 app = Flask(__name__)
+CORS(app)
 
 app.config["DEBUG"] = DEBUG
 

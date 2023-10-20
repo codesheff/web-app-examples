@@ -9,7 +9,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
+// no longer needed const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
+
+// if API_URL env var exists, use it. Otherwise use hardcoded value
+const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5050'
 
 // The useState is a hook ( built-in function) in React.
 // It allows you to add state to a functional component.
@@ -27,7 +30,7 @@ const App = () => {
     e.preventDefault();
 
     fetch(
-      `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`
+      `${API_URL}/new-image?query=${word}`
     )
       .then((res) => res.json())
       .then((data) => {
