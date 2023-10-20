@@ -7,17 +7,21 @@ from flask import Flask, request
 ##      requests module allows us to create requests to another server
 from dotenv import load_dotenv
 
+this_dir=os.path.dirname(os.path.abspath(__file__))
+dotenv_path=os.path.join(this_dir,".env.local")
 
-load_dotenv(dotenv_path="./.env.local")
+load_dotenv(dotenv_path=dotenv_path)
 
 UNSPLASH_URL='https://api.unsplash.com/photos/random'
 UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", "")
-
+DEBUG=os.environ.get("DEBUG",False)
 if not UNSPLASH_KEY:
     raise EnvironmentError("Please create .env.local and insert UNSPLASH_KEY=<your key>")
 
 
 app = Flask(__name__)
+
+app.config["DEBUG"] = DEBUG
 
 @app.route("/new-image")
 def new_image():
