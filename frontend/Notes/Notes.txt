@@ -14,6 +14,12 @@ https://favicon.io/
 https://babeljs.io/
 
 
+## Lookup py modules
+https://pypi.org/
+  - code formatter - https://pypi.org/project/black/
+  - linter  - https://pypi.org/project/pylint/
+  - code style checked   - https://pypi.org/project/pycodestyle/
+
 
 
 ===============

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
+""" This provides the api to get data from unsplash"""
+
 import os
 import requests
-from flask import Flask, request 
+from flask import Flask, request
 ## nb , request from flask module allows us to handle requests from clients
 ##      requests module allows us to create requests to another server
 from dotenv import load_dotenv
@@ -28,6 +30,7 @@ app.config["DEBUG"] = DEBUG
 
 @app.route("/new-image")
 def new_image():
+    """Get a new image"""
     word = request.args.get("query")
     headers = {
         "Authorization"  :  "Client-ID "+ UNSPLASH_KEY,
@@ -36,9 +39,9 @@ def new_image():
     params = {
         "query" : word
     }
-    response = requests.get(url=UNSPLASH_URL,headers=headers,params=params)
+    response = requests.get(url=UNSPLASH_URL,headers=headers,params=params,timeout=10)
 
-    data = (response.json())
+    data = response.json()
     return data
 
 
