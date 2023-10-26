@@ -2,3 +2,21 @@
 https://hub.docker.com/
 
 e.g https://hub.docker.com/_/python
+
+
+## run detached
+ docker run -p 5050:5050 -d images-gallery-api 
+
+
+## Get logs
+ 1009  docker logs quizzical_rhodes
+
+## Docker compose - needs to be run from the folder where the docker-compose.yml file is kept
+ docker-compose-build # only re-builds necessary images
+ docker-compose up --build # rebuilds images and creates new containers
+
+ docker compose up --detach
+
+ docker compose down 
+
+ 
