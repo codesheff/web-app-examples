@@ -1,0 +1,17 @@
+Logging on to mongo container
+
+
+# To logon to the container 
+docker exec -it images-gallery-mongo-1 mongosh --username <theuser> --password <thepassword>
+
+
+show dbs
+
+# switch to a database
+use admin
+
+# show collections
+show collections
+
+# Everything you need
+https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
