@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 // no longer needed const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
 // if API_URL env var exists, use it. Otherwise use hardcoded value
-const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5050'
+const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:5050";
 
 // The useState is a hook ( built-in function) in React.
 // It allows you to add state to a functional component.
@@ -29,9 +29,7 @@ const App = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
 
-    fetch(
-      `${API_URL}/new-image?query=${word}`
-    )
+    fetch(`${API_URL}/new-image?query=${word}`)
       .then((res) => res.json())
       .then((data) => {
         setImages([{ ...data, title: word }, ...images]); // ... spread operator - get all the individual elements of an array. We add the current search term ('word') as the title
@@ -56,7 +54,6 @@ const App = () => {
 
   return (
     <div>
-      
       <Header title="Images Gallery" />
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit} />
 
