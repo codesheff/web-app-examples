@@ -10,7 +10,7 @@ from flask import Flask, request, jsonify
 ##      requests module allows us to create requests to another server
 from dotenv import load_dotenv
 from flask_cors import CORS
-from mongo_client import mongo_client, insert_test_document
+from mongo_client import mongo_client
 
 gallery = mongo_client.gallery
 images_collection = gallery.images

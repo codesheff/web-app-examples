@@ -1,10 +1,10 @@
-version: '3'
+version: "3"
 services:
   frontend:
     restart: always
     build: ./frontend
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
       - /app/node_modules ## prevents us from mounting local node modules with local folder
       - ./frontend:/app # local folder ./frontend will be mounted as /app
@@ -14,7 +14,7 @@ services:
     restart: always
     build: ./api
     ports:
-      - '5050:5050'
+      - "5050:5050"
     volumes:
       - ./api:/app # local folder ./api will be mounted as /app
 
@@ -25,7 +25,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: verystrongpassword
     volumes:
-      - mongodb_data:/data/db       # No './' in front of volume shows it's an internal docker volume
+      - mongodb_data:/data/db # No './' in front of volume shows it's an internal docker volume
 
   mongo-express:
     image: mongo-express
