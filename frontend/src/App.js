@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Welcome from "./components/Welcome";
 import Header from "./components/Header";
@@ -26,18 +27,18 @@ const App = () => {
   const [images, setImages] = useState([]);
 
   // e is an event.
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
+    //console.log("sending fetch request");
 
-    fetch(`${API_URL}/new-image?query=${word}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setImages([{ ...data, title: word }, ...images]); // ... spread operator - get all the individual elements of an array. We add the current search term ('word') as the title
-        // console.log(images); // because setImages is asynchronout, images probably won't contain your updates at this point.
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const res = await axios.get(`${API_URL}/new-image?query=${word}`);
+      // console.log("adding found image to the state");
+      setImages([{ ...res.data, title: word }, ...images]); // ... spread operator - get all the individual elements of an array. We add the current search term ('word') as the title
+    } catch (error) {
+      console.log(error);
+    }
+
     setWord("");
   };
 
