@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Welcome from "./components/Welcome";
@@ -26,6 +26,19 @@ const App = () => {
   const [word, setWord] = useState("");
   const [images, setImages] = useState([]);
 
+  const getSavedImages = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/images`);
+      setImages(res.data || []); // If res.data is not set, it will pass empty arrary '[]'
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect - Function to call is getSavedImages.
+  //  Dependency is '[]' means will be called only once
+  //     If dependency was '[word]' it would get called whenever word changed
+  useEffect(() => getSavedImages(), []);
   // e is an event.
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
