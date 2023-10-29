@@ -59,6 +59,27 @@ const App = () => {
     setImages(images.filter((image) => image.id !== id)); // this will filter images , so that it does not contain the id we specify
   };
 
+  const handleSaveImage = async (id) => {
+    const imageToBeSaved = images.find((image) => image.id === id); // this will find image that has the id we specify
+    imageToBeSaved.saved = true;
+
+    try {
+      const res = await axios.post(`${API_URL}/images`, imageToBeSaved); //axios will convert the data to json
+      // sucessfull post gives response of inserted_id
+      // use map to go through each image in images.. if it matches the image to be saved update it to saved:true, otherwise just keep image as is
+      // and pass the resulting array to the setImages function.
+      if (res.data?.inserted_id) {
+        setImages(
+          images.map((image) =>
+            image.id === id ? { ...image, saved: true } : image
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // When running in development mode, we can access process.env
   //console.log(process.env.REACT_APP_UNSPLASH_KEY);
   // When optimised build for prd, the variables are included directly in your application
@@ -76,7 +97,11 @@ const App = () => {
           <Row xs={1} md={2} lg={3}>
             {images.map((image, i) => (
               <Col key={i} className="pb-3">
-                <ImageCard image={image} deleteImage={handleDeleteImage} />
+                <ImageCard
+                  image={image}
+                  deleteImage={handleDeleteImage}
+                  saveImage={handleSaveImage}
+                />
               </Col>
             ))}
           </Row>
