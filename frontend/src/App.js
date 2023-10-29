@@ -55,8 +55,17 @@ const App = () => {
     setWord("");
   };
 
-  const handleDeleteImage = (id) => {
-    setImages(images.filter((image) => image.id !== id)); // this will filter images , so that it does not contain the id we specify
+  const handleDeleteImage = async (id) => {
+    try {
+      console.log("deleting image" + id);
+      const res = await axios.delete(`${API_URL}/images/${id}`);
+      // sucessfull post gives response of deleted_id
+      if (res.data?.deleted_id) {
+        setImages(images.filter((image) => image.id !== id)); // this will filter images , so that it does not contain the id we specify
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSaveImage = async (id) => {
