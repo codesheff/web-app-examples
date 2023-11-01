@@ -1,4 +1,5 @@
 import React from "react";
+import { Nav } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -6,6 +7,9 @@ import Card from "react-bootstrap/Card";
 
 // image.title?.toUpperCase() - this checks that image.title exists before setting it to upper case
 const ImageCard = ({ image, deleteImage, saveImage }) => {
+  const authorName = image.user?.name || "No author name";
+  const authorPortfolioURL = image.user?.portfolio_url;
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={image.urls.small} />
@@ -22,6 +26,14 @@ const ImageCard = ({ image, deleteImage, saveImage }) => {
           </Button>
         )}
       </Card.Body>
+      <Card.Footer className="text-centred" className="text-muted">
+        {authorPortfolioURL && (
+          <Nav.Link href={authorPortfolioURL} target="_blank">
+            {authorName}
+          </Nav.Link>
+        )}
+        {!authorPortfolioURL && authorName}
+      </Card.Footer>
     </Card>
   );
 };
