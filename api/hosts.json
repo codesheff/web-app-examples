@@ -1,0 +1,20 @@
+{
+    "hostname1": {
+        "config_file": {
+            "config_file": "./config_file.txt",
+            "repo_url": "https://some-url/repo_name.git"
+        },
+        "env_name": "dev1",
+        "host_name": "hostname1",
+        "service_name": "superstack testing"
+    },
+    " hostname2*pattern": {
+        "config_file": {
+            "config_file": "./config_file_dev.txt",
+            "repo_url": "https://some-url/repo_name.git"
+        },
+        "env_name": "dev",
+        "host_name": "hostname2*pattern",
+        "service_name": "service2"
+    }
+}
